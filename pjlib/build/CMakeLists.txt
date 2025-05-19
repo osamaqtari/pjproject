@@ -56,60 +56,60 @@ set(PJLIB_INC
 
 if(WITH_SSL)
     set(PJLIB_SRC ${PJLIB_SRC}
-    ../src/pj/ssl_sock_common.c
-    ../src/pj/ssl_sock_dump.c
-    ../src/pj/ssl_sock_ossl.c)
-endif()
-
-if(WITH_BUILTIN_OPENSSL)
-    include_directories(BEFORE SYSTEM
-    ../../third_party
-    ../../third_party/openssl
- ${CMAKE_CURRENT_BINARY_DIR}/../../third_party/build/openssl
- ${CMAKE_CURRENT_BINARY_DIR}/../../third_party/build/openssl/openssl/crypto)
+        ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/ssl_sock_common.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/ssl_sock_dump.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/ssl_sock_ossl.c
+    )
 endif()
 
 if(WITH_UUID_LIB)
-    include_directories(AFTER SYSTEM ../../third_party/uuid)
     add_definitions(-DHAVE_UUID_LIB=1)
-    set(PJLIB_SRC ${PJLIB_SRC} ../src/pj/guid_uuid.c)
+    set(PJLIB_SRC ${PJLIB_SRC}
+        ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/guid_uuid.c
+    )
 else()
-    set(PJLIB_SRC ${PJLIB_SRC} ../src/pj/guid_simple.c)
+    set(PJLIB_SRC ${PJLIB_SRC}
+        ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/guid_simple.c
+    )
 endif()
 
-if(TARGET_LINUX OR TARGET_MACOSX)
+if(UNIX)
     set(PJLIB_SRC ${PJLIB_SRC}
-    ../src/pj/addr_resolv_sock.c
-    ../src/pj/file_access_unistd.c
-    ../src/pj/file_io_ansi.c
-    ../src/pj/ioqueue_select.c
-    ../src/pj/log_writer_stdout.c
-    ../src/pj/os_core_unix.c
-    ../src/pj/os_error_unix.c
-    ../src/pj/os_time_unix.c
-    ../src/pj/os_timestamp_posix.c
-    ../src/pj/sock_bsd.c
-    ../src/pj/sock_qos_bsd.c)
+        ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/addr_resolv_sock.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/file_access_unistd.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/file_io_ansi.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/ioqueue_select.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/log_writer_stdout.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/os_core_unix.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/os_error_unix.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/os_time_unix.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/os_timestamp_posix.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/sock_bsd.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/sock_qos_bsd.c
+    )
 
-    if(TARGET_LINUX)
-        set(PJLIB_INC ${PJLIB_INC} ../include/pj/compat/os_linux.h)
-    elseif(TARGET_MACOSX)
-        set(PJLIB_INC ${PJLIB_INC} ../include/pj/compat/os_darwinos.h)
+    if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+        set(PJLIB_INC ${PJLIB_INC}
+            ${CMAKE_CURRENT_SOURCE_DIR}/../include/pj/compat/os_linux.h
+        )
+    elseif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+        set(PJLIB_INC ${PJLIB_INC}
+            ${CMAKE_CURRENT_SOURCE_DIR}/../include/pj/compat/os_darwinos.h
+        )
     endif()
-endif()
-
-if(TARGET_WINDOWS)
+elseif(WIN32)
     set(PJLIB_SRC ${PJLIB_SRC}
-    ../src/pj/addr_resolv_sock.c
-    ../src/pj/file_access_win32.c
-    ../src/pj/file_io_win32.c
-    ../src/pj/log_writer_stdout.c
-    ../src/pj/os_core_win32.c
-    ../src/pj/os_error_win32.c
-    ../src/pj/os_time_win32.c
-    ../src/pj/os_timestamp_win32.c
-    ../src/pj/sock_bsd.c
-    ../src/pj/sock_qos_bsd.c)
+        ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/addr_resolv_sock.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/file_access_win32.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/file_io_win32.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/log_writer_stdout.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/os_core_win32.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/os_error_win32.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/os_time_win32.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/os_timestamp_win32.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/sock_bsd.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/sock_qos_bsd.c
+    )
 endif()
 
 add_library(pjlib OBJECT ${PJLIB_SRC} ${PJLIB_INC})
