@@ -1,40 +1,43 @@
 set(SRTP_SRC
     # cihers
-    ../../srtp/crypto/cipher/cipher.c
-    ../../srtp/crypto/cipher/null_cipher.c
-    ../../srtp/crypto/cipher/cipher_test_cases.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../srtp/crypto/cipher/cipher.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../srtp/crypto/cipher/null_cipher.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../srtp/crypto/cipher/cipher_test_cases.c
 
     # hashes
-    ../../srtp/crypto/hash/null_auth.c
-    ../../srtp/crypto/hash/auth.c
-    ../../srtp/crypto/hash/auth_test_cases.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../srtp/crypto/hash/null_auth.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../srtp/crypto/hash/auth.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../srtp/crypto/hash/auth_test_cases.c
 
     # replay
-    ../../srtp/crypto/replay/rdb.c
-    ../../srtp/crypto/replay/rdbx.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../srtp/crypto/replay/rdb.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../srtp/crypto/replay/rdbx.c
 
     # math
-    ../../srtp/crypto/math/datatypes.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../srtp/crypto/math/datatypes.c
 
     # kernel
-    ../../srtp/crypto/kernel/crypto_kernel.c
-    ../../srtp/crypto/kernel/alloc.c
-    ../../srtp/crypto/kernel/key.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../srtp/crypto/kernel/crypto_kernel.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../srtp/crypto/kernel/alloc.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../srtp/crypto/kernel/key.c
 
     # srtpobj
-    ../../srtp/srtp/srtp.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../srtp/srtp/srtp.c
 
     # errors
-    ../../srtp/pjlib/srtp_err.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../srtp/pjlib/srtp_err.c
 )
 
-file(GLOB_RECURSE SRTP_INC ../../srtp/include/*.h config.h)
+file(GLOB_RECURSE SRTP_INC
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../srtp/include/*.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/config.h
+)
 
 include_directories(BEFORE SYSTEM
-    .
-    ../../srtp/include/
-    ../../srtp/crypto/include/
-    ../../srtp
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../srtp/include/
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../srtp/crypto/include/
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../srtp
 )
 add_definitions(-DHAVE_CONFIG_H)
 

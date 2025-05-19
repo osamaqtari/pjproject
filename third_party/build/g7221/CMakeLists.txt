@@ -1,5 +1,13 @@
-file(GLOB_RECURSE G7221_SRC ../../g7221/*.c ../../g7221/*.h)
+file(GLOB_RECURSE G7221_SRC
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../g7221/*.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../g7221/*.h
+)
 
-include_directories(AFTER SYSTEM  . ../../ ../../g7221/ ../../g7221/common)
+include_directories(AFTER SYSTEM
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/../..
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../g7221
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../g7221/common
+)
 
 add_library(g7221 OBJECT ${G7221_SRC})
