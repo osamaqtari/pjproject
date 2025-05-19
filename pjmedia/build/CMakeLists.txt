@@ -1,6 +1,7 @@
 set(PJMEDIA_SRC
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/pjmedia/alaw_ulaw.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/pjmedia/alaw_ulaw_table.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../src/pjmedia/av_sync.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/pjmedia/audiodev.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/pjmedia/bidirectional.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/pjmedia/clock_thread.c
@@ -14,6 +15,7 @@ set(PJMEDIA_SRC
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/pjmedia/echo_suppress.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/pjmedia/endpoint.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/pjmedia/errno.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../src/pjmedia/event.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/pjmedia/format.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/pjmedia/g711.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/pjmedia/jbuf.c
@@ -28,6 +30,7 @@ set(PJMEDIA_SRC
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/pjmedia/resample_libsamplerate.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/pjmedia/resample_port.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/pjmedia/rtcp.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../src/pjmedia/rtcp_fb.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/pjmedia/rtcp_xr.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/pjmedia/rtp.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/pjmedia/sdp.c
@@ -47,6 +50,9 @@ set(PJMEDIA_SRC
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/pjmedia/transport_loop.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/pjmedia/transport_udp.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/pjmedia/types.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../src/pjmedia/txt_stream.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../src/pjmedia/vid_stream.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../src/pjmedia/vid_stream_info.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/pjmedia/wav_player.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/pjmedia/wav_playlist.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../src/pjmedia/wav_writer.c

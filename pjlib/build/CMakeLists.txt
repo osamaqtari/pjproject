@@ -78,6 +78,8 @@ if(UNIX)
         ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/addr_resolv_sock.c
         ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/file_access_unistd.c
         ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/file_io_ansi.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/ioqueue_epoll.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/ioqueue_kqueue.c
         ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/ioqueue_select.c
         ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/log_writer_stdout.c
         ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/os_core_unix.c
@@ -102,6 +104,7 @@ elseif(WIN32)
         ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/addr_resolv_sock.c
         ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/file_access_win32.c
         ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/file_io_win32.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/ioqueue_winnt.c
         ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/log_writer_stdout.c
         ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/os_core_win32.c
         ${CMAKE_CURRENT_SOURCE_DIR}/../src/pj/os_error_win32.c
