@@ -51,6 +51,8 @@
 #include "err.h"
 #include "alloc.h" /* for srtp_crypto_alloc() */
 
+#include <inttypes.h>
+
 #ifdef GCM
 #include "aes_gcm.h" /* for AES GCM mode */
 #endif
