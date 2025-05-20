@@ -298,4 +298,9 @@ else()
         ${TARGET_OBJECTS_LIST} ${THIRDPARTY_OBJECTS_LIST}
     )
 endif()
-target_link_libraries(${PROJECT_NAME} ${OS_LIBS} ${CODEC_LIBS} ${AUDIODEV_LIBS})
+target_link_libraries(${PROJECT_NAME}
+    ${OS_LIBS}
+    ${CODEC_LIBS}
+    ${AUDIODEV_LIBS}
+    ${THIRDPARTY_LIBRARIES_LIST}
+)

@@ -41,14 +41,17 @@ foreach(SUBDIR ${THIRDPARTY_SUBDIRECTORIES})
     add_subdirectory(${SUBDIR})
     if (TARGET ${SUBDIR})
         get_target_property(target_type ${SUBDIR} TYPE)
-        if (target_type STREQUAL "STATIC_LIBRARY")
-            set(THIRDPARTY_OBJECTS_LIST ${THIRDPARTY_OBJECTS_LIST} ${SUBDIR})
-        else()
+        if(${target_type} STREQUAL "OBJECT_LIBRARY")
             set(THIRDPARTY_OBJECTS_LIST ${THIRDPARTY_OBJECTS_LIST}
                 $<TARGET_OBJECTS:${SUBDIR}>
             )
-        endif ()
+        else()
+            set(THIRDPARTY_LIBRARIES_LIST ${THIRDPARTY_LIBRARIES_LIST}
+                ${SUBDIR}
+            )
+        endif()
     endif()
 endforeach()
 
 set(THIRDPARTY_OBJECTS_LIST ${THIRDPARTY_OBJECTS_LIST} PARENT_SCOPE)
+set(THIRDPARTY_LIBRARIES_LIST ${THIRDPARTY_LIBRARIES_LIST} PARENT_SCOPE)
