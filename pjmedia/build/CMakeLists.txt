@@ -71,8 +71,6 @@ set(PJMEDIA-CODECS_SRC
   ${CMAKE_CURRENT_SOURCE_DIR}/../src/pjmedia-codec/audio_codecs.c
 )
 
-file(GLOB_RECURSE PJMEDIA_INC ${CMAKE_CURRENT_SOURCE_DIR}/../include/*.h)
-
 if(WITH_SRTP)
     set(PJMEDIA_SRC ${PJMEDIA_SRC}
         ${CMAKE_CURRENT_SOURCE_DIR}/../src/pjmedia/transport_srtp.c
@@ -159,7 +157,6 @@ endif()
 
 add_library(pjmedia OBJECT
     ${PJMEDIA_SRC}
-    ${PJMEDIA_INC}
     ${PJMEDIA-AUDIODEV_SRC}
     ${PJMEDIA-CODECS_SRC}
 )
