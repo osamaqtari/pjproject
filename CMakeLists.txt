@@ -298,9 +298,17 @@ else()
         ${TARGET_OBJECTS_LIST} ${THIRDPARTY_OBJECTS_LIST}
     )
 endif()
+
 target_link_libraries(${PROJECT_NAME}
     ${OS_LIBS}
     ${CODEC_LIBS}
     ${AUDIODEV_LIBS}
     ${THIRDPARTY_LIBRARIES_LIST}
+)
+
+target_include_directories(${PROJECT_NAME} INTERFACE
+    ${CMAKE_CURRENT_SOURCE_DIR}/pjlib/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/pjlib-util/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/pjsip/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/pjmedia/include
 )
