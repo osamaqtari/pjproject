@@ -1,3 +1,5 @@
+include(CheckLibraryExists)
+
 set(SRTP_SRC
     # cihers
     ${CMAKE_CURRENT_SOURCE_DIR}/../../srtp/crypto/cipher/cipher.c
@@ -8,6 +10,7 @@ set(SRTP_SRC
     ${CMAKE_CURRENT_SOURCE_DIR}/../../srtp/crypto/hash/null_auth.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../../srtp/crypto/hash/auth.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../../srtp/crypto/hash/auth_test_cases.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../srtp/crypto/hash/sha1.c
 
     # replay
     ${CMAKE_CURRENT_SOURCE_DIR}/../../srtp/crypto/replay/rdb.c
@@ -28,17 +31,28 @@ set(SRTP_SRC
     ${CMAKE_CURRENT_SOURCE_DIR}/../../srtp/pjlib/srtp_err.c
 )
 
-file(GLOB_RECURSE SRTP_INC
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../srtp/include/*.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/config.h
-)
-
 include_directories(BEFORE SYSTEM
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/../../srtp/include/
     ${CMAKE_CURRENT_SOURCE_DIR}/../../srtp/crypto/include/
     ${CMAKE_CURRENT_SOURCE_DIR}/../../srtp
 )
-add_definitions(-DHAVE_CONFIG_H)
 
-add_library(srtp OBJECT ${SRTP_SRC} ${SRTP_INC})
+CHECK_LIBRARY_EXISTS(crypto EVP_aes_128_gcm "" SSL_HAS_AES_GCM)
+
+if (SSL_HAS_AES_GCM)
+    set(SRTP_SRC ${SRTP_SRC}
+        ${CMAKE_CURRENT_SOURCE_DIR}/../../srtp/crypto/cipher/aes_icm_ossl.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/../../srtp/crypto/cipher/aes_gcm_ossl.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/../../srtp/crypto/hash/hmac_ossl.c
+    )
+    add_definitions(-DOPENSSL -DGCM)
+else()
+    set(SRTP_SRC ${SRTP_SRC}
+        ${CMAKE_CURRENT_SOURCE_DIR}/../../srtp/crypto/cipher/aes.c
+        ${CMAKE_CURRENT_SOURCE_DIR}/../../srtp/crypto/cipher/aes_icm.c
+    )
+endif()
+
+add_definitions(-DHAVE_CONFIG_H)
+add_library(srtp OBJECT ${SRTP_SRC})
