@@ -3,7 +3,7 @@ file(GLOB PJSIP_SRC
     ${CMAKE_CURRENT_SOURCE_DIR}/../include/pjsip/*.h
 )
 file(GLOB PJSIP-SIMPLE_SRC
-    ${CMAKE_CURRENT_SOURCE_DIR}/../src/pjsip-simple/*.
+    ${CMAKE_CURRENT_SOURCE_DIR}/../src/pjsip-simple/*.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../include/pjsip-simple/*.h
 )
 file(GLOB PJSIP-UA_SRC
